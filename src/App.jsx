@@ -30,6 +30,10 @@ export default function App() {
     );
   });
 
+  function handleDeleteProject(id) {
+    setProjects((prev) => prev.filter((p) => p.id !== id));
+  }
+
   return (
     <div className="max-w-4xl mx-auto px-4 pb-10">
       <Header />
@@ -39,7 +43,10 @@ export default function App() {
 
         <div className="border-2 border-black rounded-2xl p-6 sm:p-8">
           <SearchBar value={searchTerm} onChange={setSearchTerm} />
-          <ProjectList projects={filteredProjects} />
+          <ProjectList
+            projects={filteredProjects}
+            onDelete={handleDeleteProject}
+          />
         </div>
       </div>
     </div>
