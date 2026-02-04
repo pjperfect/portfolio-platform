@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Header from './components/Header';
 import ProjectForm from './components/ProjectForm';
 import SearchBar from './components/SearchBar';
@@ -10,14 +12,26 @@ export default function App() {
     { id: 3, title: 'Project 3', description: 'Description of the project' },
   ];
 
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredProjects = SAMPLE_PROJECTS.filter((p) => {
+    const q = searchTerm.toLowerCase().trim();
+    if (!q) return true;
+    return (
+      p.title.toLowerCase().includes(q) ||
+      p.description.toLowerCase().includes(q)
+    );
+  });
+
   return (
-    <div className="max-w-4xl mx-auto px-4">
+    <div className="max-w-4xl mx-auto px-4 pb-10">
       <Header />
       <div className="space-y-6">
         <ProjectForm />
-        <div>
-          <SearchBar />
-          <ProjectList projects={SAMPLE_PROJECTS} />
+
+        <div className="border-2 border-black rounded-2xl p-6 sm:p-8">
+          <SearchBar value={searchTerm} onChange={setSearchTerm} />
+          <ProjectList projects={filteredProjects} />
         </div>
       </div>
     </div>
