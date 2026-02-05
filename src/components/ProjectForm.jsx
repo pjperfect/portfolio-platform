@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export default function ProjectForm({ onAddProject }) {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -17,8 +17,8 @@ export default function ProjectForm({ onAddProject }) {
       description: cleanDescription,
     });
 
-    setTitle("");
-    setDescription("");
+    setTitle('');
+    setDescription('');
   }
 
   return (
@@ -27,8 +27,11 @@ export default function ProjectForm({ onAddProject }) {
 
       <form className="space-y-5" onSubmit={handleSubmit}>
         <div className="space-y-2">
-          <label className="block text-lg font-medium">Title</label>
+          <label className="block text-lg font-medium" htmlFor="title">
+            Title
+          </label>
           <input
+            id="title"
             className="w-full border-2 border-black rounded-xl px-4 py-3 text-lg focus:outline-none"
             type="text"
             placeholder="e.g. Portfolio Website"
@@ -38,8 +41,11 @@ export default function ProjectForm({ onAddProject }) {
         </div>
 
         <div className="space-y-2">
-          <label className="block text-lg font-medium">Description</label>
+          <label className="block text-lg font-medium" htmlFor="description">
+            Description
+          </label>
           <textarea
+            id="description"
             className="w-full border-2 border-black rounded-xl px-4 py-3 text-lg focus:outline-none"
             rows="4"
             placeholder="What is the project about?"
